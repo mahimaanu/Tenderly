@@ -4,15 +4,14 @@ AI-Based Tender Evaluation and Eligibility Analysis Platform for Government Proc
 
 ## Quick Start
 
-To start UI :
+To start Front End :
 See [`SETUP.md`](./tenderly-ui/SETUP.md) for full setup instructions.
+```
+npm run install
+npm run dev
+```
 
 To start Backend :
-```bash
-npm install
-npm run dev
-# open http://localhost:3000
-```
 
 ```bash
 # Install dependencies
