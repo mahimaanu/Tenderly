@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bidder Report: {{ bidder_name }}</title>
+    <style>
+    body { font-family: 'Arial', sans-serif; margin: 40px; }
+    .header { border-bottom: 2px solid #333; padding-bottom: 20px; }
+    .verdict-eligible { color: #22c55e; }
+    .verdict-ineligible { color: #ef4444; }
+    .verdict-review { color: #f59e0b; }
+    .verdict-box {
+        border: 2px solid #ccc;
+        padding: 15px;
+        margin: 20px 0;
+        text-align: center;
+        border-radius: 5px;
+    }
+    .verdict-box.verdict-eligible { background-color: #dcfce7; border-color: #22c55e; }
+    .verdict-box.verdict-ineligible { background-color: #fee2e2; border-color: #ef4444; }
+    .verdict-box.verdict-review { background-color: #fef3c7; border-color: #f59e0b; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    th { background: #f3f4f6; }
+    .criterion-eligible { background: #dcfce7; }
+    .criterion-ineligible { background: #fee2e2; }
+    .criterion-review { background: #fef3c7; }
+    .evidence-box { background: #f9fafb; padding: 10px; margin: 5px 0; font-size: 0.9em; }
+    .audit-section { margin-top: 30px; border-top: 1px solid #ddd; padding-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Tender Eligibility Evaluation Report</h1>
+        <p><strong>Tender:</strong> {{ tender_title }} ({{ tender_number }})</p>
+        <p><strong>Bidder:</strong> {{ bidder_name }}</p>
+        <p><strong>Evaluation Date:</strong> {{ evaluated_at }}</p>
+    </div>
+    
+    <div class="verdict-box verdict-{{ overall_verdict | lower }}">
+        <h2>Overall Verdict: {{ overall_verdict | upper }}</h2>
+        <p>Score: {{ score }}/100</p>
+    </div>
+    
+    <h2>Criterion-wise Evaluation</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Criterion</th>
+                <th>Priority</th>
+                <th>Verdict</th>
+                <th>Requirement</th>
+                <th>Bidder Value</th>
+                <th>Evidence</th>
+                <th>Reasoning</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for eval in criterion_evaluations %}
+            <tr class="criterion-{{ eval.verdict | lower }}">
+                <td>{{ loop.index }}</td>
+                <td>{{ eval.criterion_description }}</td>
+                <td>{{ eval.priority }}</td>
+                <td class="verdict-{{ eval.verdict | lower }}">{{ eval.verdict | upper }}</td>
+                <td>{{ eval.requirement }}</td>
+                <td>{{ eval.bidder_value }}</td>
+                <td>
+                    {% if eval.source_document %}
+                        {{ eval.source_document }}, Page {{ eval.source_page }}
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+                <td>{{ eval.reasoning }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    <div class="audit-section">
+        <h2>Audit Trail</h2>
+        <p><strong>Report Generated:</strong> {{ generated_at }}</p>
+        <p><strong>Evaluation Completed:</strong> {{ evaluated_at }}</p>
+    </div>
+</body>
+</html>

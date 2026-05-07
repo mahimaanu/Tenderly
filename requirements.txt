@@ -1,0 +1,14 @@
+fastapi>=0.100.0
+uvicorn>=0.22.0
+python-dotenv>=1.0.0
+psycopg2-binary>=2.9.0
+python-multipart>=0.0.6
+python-jose>=3.3.0
+jinja2>=3.1.0
+weasyprint>=60.0
+fitz
+paddleocr
+opencv-python
+python-docx
+pandas
+numpy
