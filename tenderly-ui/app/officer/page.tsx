@@ -22,11 +22,13 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { DonutChart, DonutLegend } from "@/components/charts/donut"
+import { BarChart } from "@/components/charts/bars"
 import { VerdictBadge, VerdictDot } from "@/components/portal/verdict"
 import { NewTenderModal } from "@/components/portal/new-tender-modal"
 import { getOfficerDashboard } from "@/lib/api/officer"
 import { listTenders } from "@/lib/api/tenders"
 import { fmtDateTime } from "@/lib/utils"
+import { sampleTender } from "@/lib/mock-data"
 
 export default async function OfficerDashboard() {
   const [dashboard, tenders] = await Promise.all([
@@ -245,6 +247,42 @@ export default async function OfficerDashboard() {
           )}
         </Card>
       </div>
+
+      {/* Bidder score distribution */}
+      <Card className="mt-5">
+        <div className="flex items-center justify-between p-5 pb-3">
+          <div>
+            <h3 className="font-heading text-sm font-semibold">Bidder Score Distribution</h3>
+            <p className="text-muted-foreground text-[11px]">{sampleTender.reference}</p>
+          </div>
+          <Button asChild variant="outline" size="sm">
+            <Link href="/officer/reports">Full analytics <HugeiconsIcon icon={ArrowRight02Icon} size={11} /></Link>
+          </Button>
+        </div>
+        <div className="px-5 pb-3">
+          <BarChart
+            data={sampleTender.bidders.map((b) => ({ label: b.name.split(" ")[0], value: b.score }))}
+            height={140}
+            color="var(--primary)"
+          />
+        </div>
+        <ul className="divide-y divide-border/60">
+          {sampleTender.bidders.map((b) => (
+            <li key={b.id}>
+              <Link
+                href={`/officer/tenders/${sampleTender.id}/bidders/${b.id}`}
+                className="flex items-center gap-3 px-5 py-2.5 hover:bg-muted/40"
+              >
+                <VerdictDot verdict={b.overall} />
+                <span className="text-sm flex-1 truncate">{b.name}</span>
+                <span className="text-[11px] text-muted-foreground hidden sm:block">{b.city}</span>
+                <span className="font-mono text-sm font-semibold tabular-nums">{b.score}%</span>
+                <HugeiconsIcon icon={ArrowRight02Icon} size={13} className="text-muted-foreground" />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Card>
 
       {/* Tenders list */}
       <Card className="mt-5">

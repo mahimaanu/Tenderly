@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button"
 import { PageHeader } from "@/components/portal/header"
 import { VerdictBadge, VerdictDot } from "@/components/portal/verdict"
 import { LockCriteriaButton, UploadDocumentButton, ReExtractButton } from "@/components/portal/tender-actions"
+import { AddCriterionModal } from "@/components/portal/add-criterion-modal"
 import { getTender, getCriteria, getTenderDocuments } from "@/lib/api/tenders"
 import { listBidders } from "@/lib/api/bidders"
 import { DeleteTenderButton } from "@/components/portal/delete-tender-button"
@@ -142,6 +143,9 @@ export default async function TenderDetail({ params }: { params: Promise<{ id: s
             {documents.length > 0 && !criteriaLocked && (
               <ReExtractButton tenderId={id} />
             )}
+            {!criteriaLocked && (
+              <AddCriterionModal tenderId={id} />
+            )}
             {!criteriaLocked && criteria.length > 0 && (
               <LockCriteriaButton tenderId={id} />
             )}
@@ -153,7 +157,7 @@ export default async function TenderDetail({ params }: { params: Promise<{ id: s
 
         {criteria.length === 0 ? (
           <p className="px-5 pb-5 text-sm text-muted-foreground">
-            No criteria extracted yet. Upload an RFP document above to extract criteria automatically.
+            No criteria yet. Upload an RFP document to extract criteria automatically, or add them manually using &ldquo;Add Criterion&rdquo; above.
           </p>
         ) : (
           <ul className="divide-y divide-border/60">

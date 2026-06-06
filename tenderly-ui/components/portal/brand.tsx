@@ -40,7 +40,7 @@ export function Brand({
         <span className="flex flex-col leading-none">
           <span className="font-heading text-sm font-semibold tracking-tight">Tenderly</span>
           <span className="text-[9.5px] tracking-wide text-muted-foreground uppercase">
-            CRPF · Procurement
+            Tender Evaluation
           </span>
         </span>
       )}

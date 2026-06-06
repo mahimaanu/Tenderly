@@ -358,7 +358,7 @@ th {{ background: #f1f5f9; font-size: 9pt; text-transform: uppercase; letter-spa
 
 <div class="header-strip">
   <div class="muted" style="opacity:.85; font-size:8.5pt; text-transform:uppercase; letter-spacing:.06em;">
-    Government of India · Ministry of Home Affairs · CRPF
+    Consolidated Procurement Evaluation
   </div>
   <h1>Consolidated Evaluation Report</h1>
   <div>{tender.get('title','')}</div>
@@ -391,9 +391,9 @@ th {{ background: #f1f5f9; font-size: 9pt; text-transform: uppercase; letter-spa
 
 <h2>Section D — Sign-off</h2>
 <div class="signoff">
-  <div class="box"><div class="name">Procurement Officer</div><div class="role">Inspector, Procurement Wing</div></div>
-  <div class="box"><div class="name">Recommending Authority</div><div class="role">Commandant</div></div>
-  <div class="box"><div class="name">Approving Authority</div><div class="role">DIG (Procurement)</div></div>
+  <div class="box"><div class="name">Procurement Officer</div><div class="role">Evaluation Officer</div></div>
+  <div class="box"><div class="name">Recommending Authority</div><div class="role">Senior Officer</div></div>
+  <div class="box"><div class="name">Approving Authority</div><div class="role">Head of Procurement</div></div>
 </div>
 
 <div class="footer">

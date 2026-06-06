@@ -72,6 +72,24 @@ export async function getCriteria(id: string): Promise<Criterion[]> {
   return Array.isArray(res) ? res : (res as { data: Criterion[] }).data ?? []
 }
 
+export type CriterionCreate = {
+  type: string
+  priority: "mandatory" | "optional"
+  description: string
+  criterion_code?: string
+  threshold_value?: string
+  threshold_operator?: string
+  unit?: string
+}
+
+export async function addCriterion(tenderId: string, data: CriterionCreate): Promise<Criterion> {
+  return apiFetch<Criterion>(`/tenders/${tenderId}/criteria`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  })
+}
+
 export async function updateCriterion(
   tenderId: string,
   criterionId: string,

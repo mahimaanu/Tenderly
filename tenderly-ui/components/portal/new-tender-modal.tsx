@@ -132,7 +132,7 @@ export function NewTenderModal() {
                   <Input
                     name="tender_number"
                     required
-                    placeholder="CRPF/DG/PROC/2025-26/002"
+                    placeholder="ORG/PROC/2025-26/002"
                     className="mt-1 font-mono text-sm"
                   />
                 </div>
@@ -154,7 +154,7 @@ export function NewTenderModal() {
                   <Label className="text-xs text-muted-foreground mb-1">Issuing Authority</Label>
                   <Input
                     name="issuing_authority"
-                    placeholder="Director General, CRPF – Procurement Wing"
+                    placeholder="Director General – Procurement Wing"
                     className="mt-1"
                   />
                 </div>

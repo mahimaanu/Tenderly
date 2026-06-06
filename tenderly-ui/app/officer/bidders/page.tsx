@@ -11,10 +11,11 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { PageHeader } from "@/components/portal/header"
-import { listAllBidders } from "@/lib/api/bidders"
+import { VerdictBadge } from "@/components/portal/verdict"
+import { sampleTender } from "@/lib/mock-data"
 
-export default async function BidderDirectory() {
-  const bidders = await listAllBidders().catch(() => [])
+export default function BidderDirectory() {
+  const bidders = sampleTender.bidders
 
   return (
     <>
@@ -38,26 +39,23 @@ export default async function BidderDirectory() {
             <Card key={b.id} className="p-4">
               <div className="flex items-start justify-between gap-2">
                 <div className="min-w-0">
-                  <p className="text-sm font-semibold truncate">{b.company_name}</p>
-                  <p className="text-muted-foreground text-[11px] font-mono mt-0.5">{b.registration_number ?? "—"}</p>
+                  <p className="text-sm font-semibold truncate">{b.name}</p>
+                  <p className="text-muted-foreground text-[11px] font-mono mt-0.5">{b.registrationNo}</p>
                 </div>
-                <Badge variant="muted" className="shrink-0 text-[10px]">{b.status}</Badge>
+                <VerdictBadge verdict={b.overall} size="sm" className="shrink-0" />
               </div>
               <div className="mt-3 space-y-1.5">
-                {b.city && (
-                  <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
-                    <HugeiconsIcon icon={Building01Icon} size={11} /> {b.city}
-                  </div>
-                )}
-                {b.contact_email && (
-                  <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
-                    <HugeiconsIcon icon={Mail01Icon} size={11} /> {b.contact_email}
-                  </div>
-                )}
+                <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+                  <HugeiconsIcon icon={Building01Icon} size={11} /> {b.city}
+                </div>
+                <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+                  <HugeiconsIcon icon={Mail01Icon} size={11} /> {b.email}
+                </div>
               </div>
-              <div className="mt-3 flex justify-end">
+              <div className="mt-3 flex items-center justify-between">
+                <span className="text-[11px] text-muted-foreground">Score: <span className="font-medium text-foreground">{b.score}%</span></span>
                 <Button asChild variant="outline" size="sm">
-                  <Link href={`/officer/tenders/${b.tender_id}/bidders/${b.id}`}>
+                  <Link href={`/officer/tenders/${sampleTender.id}/bidders/${b.id}`}>
                     View <HugeiconsIcon icon={ArrowRight02Icon} size={11} />
                   </Link>
                 </Button>

@@ -196,12 +196,22 @@ def _rule_based_extraction(text: str) -> list[dict]:
         if not matched_snippets:
             continue
 
-        # Use the first matched snippet to try to derive a description
+        # Use the first matched snippet to derive a description.
+        # Find the sentence that contains the match keyword, then extend to next sentence.
         snippet = matched_snippets[0]
-        # Pull a meaningful sentence from the snippet
-        sentences = re.split(r'[.;]\s+', snippet)
-        best = max(sentences, key=lambda s: len(s.strip()), default=snippet)
-        desc = re.sub(r'\s+', ' ', best.strip())[:250] or base_desc
+        sentences = re.split(r'(?<=[.;])\s+', snippet)
+        # Pick the sentence containing the match pattern, prefer shorter sentences that are specific
+        best = base_desc
+        for sent in sentences:
+            if any(re.search(pat, sent, re.IGNORECASE) for pat in patterns):
+                # Try to grab this sentence + the next one for context
+                idx = sentences.index(sent)
+                context = " ".join(sentences[idx:idx+2]).strip()
+                context = re.sub(r'\s+', ' ', context)
+                if 20 < len(context) < 300:
+                    best = context
+                    break
+        desc = best[:250]
 
         val, op, unit = _extract_numeric(snippet)
 
@@ -277,7 +287,7 @@ def _extract_with_claude(file_path: str) -> list[dict]:
     content.append({"type": "text", "text": CLAUDE_PROMPT})
 
     response = client.messages.create(
-        model="claude-sonnet-4-5",
+        model="claude-sonnet-4-6",
         max_tokens=2048,
         messages=[{"role": "user", "content": content}],
     )

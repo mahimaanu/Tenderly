@@ -12,7 +12,7 @@ class TenderStatus(str, Enum):
 
 
 class TenderCreate(BaseModel):
-    tender_number: str = Field(..., example="CRPF/2024/CONST/001")
+    tender_number: str = Field(..., example="ORG/2024/CONST/001")
     title: str = Field(..., example="Construction Services")
     description: Optional[str] = None
     issuing_authority: Optional[str] = None
@@ -67,6 +67,16 @@ class CriterionResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class CriterionCreate(BaseModel):
+    type: CriterionType
+    priority: Priority
+    description: str
+    criterion_code: Optional[str] = None
+    threshold_value: Optional[str] = None
+    threshold_operator: Optional[str] = None
+    unit: Optional[str] = None
 
 
 class CriterionUpdate(BaseModel):

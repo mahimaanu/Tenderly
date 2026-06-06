@@ -26,11 +26,10 @@ export function PortalShell({
         <footer className="border-t border-border/70 px-5 py-3 lg:px-7">
           <div className="flex flex-wrap items-center justify-between gap-2 text-[10.5px] text-muted-foreground">
             <span>
-              © Government of India · Central Reserve Police Force ·
-              Tenderly v0.1 (prototype)
+              © Tenderly v0.1 (prototype)
             </span>
             <span className="flex items-center gap-2">
-              <span className="ashoka-stripe inline-block h-1.5 w-6 rounded-full" />
+              <span className="accent-stripe inline-block h-1.5 w-6 rounded-full" />
               Built for procurement transparency
             </span>
           </div>

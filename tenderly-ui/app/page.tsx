@@ -23,8 +23,8 @@ import { Brand } from "@/components/portal/brand"
 export default function LandingPage() {
   return (
     <div className="hero-bg min-h-svh">
-      {/* tricolour stripe */}
-      <div className="ashoka-stripe h-1 w-full" />
+      {/* accent stripe */}
+      <div className="accent-stripe h-1 w-full" />
 
       {/* Top bar */}
       <header className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
@@ -55,8 +55,8 @@ export default function LandingPage() {
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-7 lg:pr-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card px-3 py-1 text-[10.5px] font-medium tracking-wide text-muted-foreground">
-              <span className="ashoka-stripe inline-block h-1.5 w-3 rounded-full" />
-              GOVERNMENT OF INDIA · MINISTRY OF HOME AFFAIRS · CRPF
+              <span className="accent-stripe inline-block h-1.5 w-3 rounded-full" />
+              AI-Powered Procurement
               <span className="text-foreground/60">·</span>
               <span className="text-success">Pilot Programme · 2026</span>
             </div>
@@ -64,18 +64,17 @@ export default function LandingPage() {
               Tender evaluation for
               <span className="bg-gradient-to-r from-primary to-info bg-clip-text text-transparent">
                 {" "}
-                CRPF Procurement
+                any organisation
               </span>
             </h1>
             <p className="text-muted-foreground mt-5 max-w-xl text-sm leading-relaxed md:text-base">
-              Tenderly helps procurement officers at the Central Reserve Police Force to read every
-              tender, every bid, and every supporting document including scans and
-              photographs and produce an{" "}
+              Tenderly helps procurement officers read every tender, every bid, and every
+              supporting document — including scans and photographs — and produce an{" "}
               <span className="text-foreground font-medium">explainable, auditable verdict</span>{" "}
               for each bidder against each criterion. No bidder is silently disqualified.
             </p>
 
-            <div className="mt-7 flex flex-wrap items-center gap-3">
+            {/* <div className="mt-7 flex flex-wrap items-center gap-3">
               <Button asChild size="lg" className="h-10 px-5 text-sm">
                 <Link href="/officer-login">
                   <HugeiconsIcon icon={Shield01Icon} size={14} />
@@ -89,7 +88,7 @@ export default function LandingPage() {
                   Open Bidder Portal
                 </Link>
               </Button>
-            </div>
+            </div>  */}
 
             <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {[
@@ -114,7 +113,7 @@ export default function LandingPage() {
               <PortalCard
                 href="/officer-login"
                 role="For Procurement Officers"
-                title="CRPF Officer Portal"
+                title="Officer Portal"
                 description="Upload a tender. Receive criterion-by-criterion evaluations for every bidder with verdict, evidence and confidence."
                 icon={Shield01Icon}
                 tone="primary"
@@ -134,7 +133,7 @@ export default function LandingPage() {
                 icon={UserGroupIcon}
                 tone="saffron"
                 features={[
-                  "Browse open CRPF tenders",
+                  "Browse open tenders",
                   "Guided document checklist",
                   "Live submission status",
                   "Respond to manual review requests",
@@ -247,7 +246,7 @@ export default function LandingPage() {
                 10 bidders. 4 criteria. One report a procurement officer can sign.
               </h2>
               <p className="text-muted-foreground mt-4 text-sm leading-relaxed">
-                A government department issues a tender for construction services. Tenderly extracts
+                An organisation issues a tender for construction services. Tenderly extracts
                 the eligibility criteria from the document, parses every bidder submission, and
                 produces a consolidated report — with each verdict tied back to the specific
                 criterion, document and value that drove it.
@@ -304,13 +303,7 @@ export default function LandingPage() {
             <span className="ml-2">Built for procurement transparency.</span>
           </div>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] text-muted-foreground">
-            <span>Pilot programme — Government of India · MHA · CRPF</span>
-            <span>·</span>
             <span>v0.1 prototype</span>
-            <span>·</span>
-            <a href="mailto:procurement@crpf.gov.in" className="hover:text-foreground">
-              procurement@crpf.gov.in
-            </a>
           </div>
         </div>
       </footer>
@@ -378,7 +371,7 @@ function PortalCard({
       </ul>
       <div className="mt-5 flex items-center justify-between border-t border-border/60 pt-3">
         <span className="text-xs font-medium">{cta}</span>
-        <span className="text-muted-foreground text-[10.5px]">Single Sign-On · NIC ID</span>
+        <span className="text-muted-foreground text-[10.5px]">Single Sign-On</span>
       </div>
     </Link>
   )

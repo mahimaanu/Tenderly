@@ -10,7 +10,6 @@
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.18 0.025 250);
 
-    /* Govt of India navy */
     --primary: oklch(0.34 0.105 255);
     --primary-foreground: oklch(0.99 0.005 240);
 
@@ -23,7 +22,6 @@
     --accent: oklch(0.952 0.018 240);
     --accent-foreground: oklch(0.28 0.045 255);
 
-    /* India saffron */
     --saffron: oklch(0.74 0.165 55);
     --saffron-foreground: oklch(0.22 0.05 50);
 
@@ -140,15 +138,13 @@
 }
 
 @layer utilities {
-  .ashoka-stripe {
+  .accent-stripe {
     background: linear-gradient(
       to right,
-      var(--saffron) 0%,
-      var(--saffron) 33.33%,
-      #ffffff 33.33%,
-      #ffffff 66.66%,
-      #138808 66.66%,
-      #138808 100%
+      var(--primary) 0%,
+      var(--primary) 50%,
+      var(--saffron) 50%,
+      var(--saffron) 100%
     );
   }
   .grid-bg {

@@ -29,7 +29,7 @@ export default function OfficerLoginPage() {
             <span className="text-xl font-semibold text-gray-900">Tenderly</span>
           </div>
           <h1 className="text-2xl font-bold text-gray-900">Officer Sign In</h1>
-          <p className="text-sm text-gray-500 mt-1">CRPF Procurement Portal</p>
+          <p className="text-sm text-gray-500 mt-1">Procurement Portal</p>
         </div>
 
         {error && (
@@ -46,7 +46,7 @@ export default function OfficerLoginPage() {
               type="email"
               required
               autoComplete="email"
-              placeholder="officer@crpf.gov.in"
+              placeholder="officer@organization.gov"
               className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>

@@ -9,9 +9,9 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 const fontMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" })
 
 export const metadata: Metadata = {
-  title: "Tenderly — CRPF Tender Evaluation Platform",
+  title: "Tenderly — Tender Evaluation Platform",
   description:
-    "AI-assisted tender evaluation for the Central Reserve Police Force. Auditable, explainable, end-to-end.",
+    "AI-assisted tender evaluation and eligibility analysis. Auditable, explainable, end-to-end.",
 }
 
 export default function RootLayout({

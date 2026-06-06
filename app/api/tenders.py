@@ -8,7 +8,7 @@ import os
 import uuid
 
 from app.database import get_db
-from app.schemas.tender import TenderCreate, TenderResponse, TenderDocumentResponse, CriterionResponse, CriterionUpdate
+from app.schemas.tender import TenderCreate, TenderResponse, TenderDocumentResponse, CriterionResponse, CriterionCreate, CriterionUpdate
 from app.schemas.evaluation import EvaluationResponse
 from app.config import UPLOADS_DIR
 from app.audit import log as audit_log
@@ -287,6 +287,45 @@ async def get_extracted_criteria(tender_id: str):
                 (tender_id,),
             )
             return dict_fetchall(cur)
+    finally:
+        conn.close()
+
+
+@router.post("/{tender_id}/criteria", response_model=CriterionResponse, status_code=201)
+async def add_criterion(tender_id: str, data: CriterionCreate):
+    """Manually add an eligibility criterion to a tender (officer-created, not AI-extracted)."""
+    conn = get_conn()
+    try:
+        with conn.cursor(cursor_factory=DictCursor) as cur:
+            cur.execute("SELECT status FROM tenders WHERE id = %s", (tender_id,))
+            row = cur.fetchone()
+            if not row:
+                raise HTTPException(status_code=404, detail="Tender not found")
+            if row[0] != "draft":
+                raise HTTPException(status_code=409, detail="Criteria are locked — tender is no longer in draft status")
+
+            cur.execute(
+                """
+                INSERT INTO criteria
+                  (tender_id, criterion_code, type, priority, description,
+                   threshold_value, threshold_operator, unit, manually_verified)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, TRUE)
+                RETURNING *
+                """,
+                (
+                    tender_id,
+                    data.criterion_code or None,
+                    data.type,
+                    data.priority,
+                    data.description,
+                    data.threshold_value or None,
+                    data.threshold_operator or None,
+                    data.unit or None,
+                ),
+            )
+            result = dict_fetchone(cur)
+            conn.commit()
+            return result
     finally:
         conn.close()
 

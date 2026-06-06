@@ -322,17 +322,17 @@ const bidders: Bidder[] = bidderProfiles.map((p, i) => {
 
 export const sampleTender: Tender = {
   id: "tender-001",
-  reference: "CRPF/PROC/CIV/2026/0142",
-  title: "Construction of CRPF Group Centre — Boundary Wall, Barracks (Phase-II) & Allied Works",
+  reference: "ORG/PROC/CIV/2026/0142",
+  title: "Construction of Group Centre — Boundary Wall, Barracks (Phase-II) & Allied Works",
   category: "Civil Construction",
-  issuingDept: "CRPF Procurement Wing — Directorate General, New Delhi",
+  issuingDept: "Procurement Wing — Directorate General",
   estimatedValue: "₹ 12.40 Crore",
   publishedOn: "2026-03-28",
   closingOn: "2026-04-27",
   evaluationStartedOn: "2026-04-28",
   status: "under_evaluation",
   description:
-    "Construction of perimeter security wall (2.4 km), four 3-storey barrack blocks (Phase-II), guard posts, and allied internal road & drainage works at CRPF Group Centre. Bidders must comply with all four mandatory eligibility criteria below for technical qualification.",
+    "Construction of perimeter security wall (2.4 km), four 3-storey barrack blocks (Phase-II), guard posts, and allied internal road & drainage works. Bidders must comply with all four mandatory eligibility criteria below for technical qualification.",
   criteria: criteria as unknown as Tender["criteria"],
   bidders,
 }
@@ -340,10 +340,10 @@ export const sampleTender: Tender = {
 // A second open tender for the bidder portal (not yet under evaluation)
 export const openTender: Tender = {
   id: "tender-002",
-  reference: "CRPF/PROC/COMM/2026/0188",
+  reference: "ORG/PROC/COMM/2026/0188",
   title: "Annual Maintenance Contract — Communication Towers (Northern Sector)",
   category: "Maintenance Services",
-  issuingDept: "CRPF Communications Wing — Northern Sector HQ, Delhi",
+  issuingDept: "Communications Wing — Northern Sector HQ",
   estimatedValue: "₹ 3.85 Crore",
   publishedOn: "2026-04-15",
   closingOn: "2026-05-20",
@@ -398,10 +398,10 @@ export const openTender: Tender = {
 
 export const closedTender: Tender = {
   id: "tender-003",
-  reference: "CRPF/PROC/MED/2025/0098",
-  title: "Supply of Medical Equipment — CRPF Composite Hospital, Guwahati",
+  reference: "ORG/PROC/MED/2025/0098",
+  title: "Supply of Medical Equipment — Composite Hospital, Guwahati",
   category: "Medical Supplies",
-  issuingDept: "CRPF Medical Directorate, New Delhi",
+  issuingDept: "Medical Directorate",
   estimatedValue: "₹ 1.92 Crore",
   publishedOn: "2025-11-10",
   closingOn: "2025-12-15",
@@ -428,7 +428,7 @@ export function getBidder(tenderId: string, bidderId: string) {
 // ---------------------------------------------------------------------------
 
 export const auditEvents: AuditEvent[] = [
-  { id: "a1", timestamp: "2026-04-28T09:00:00+05:30", actor: "System", actorRole: "system", action: "Tender locked for evaluation", target: "CRPF/PROC/CIV/2026/0142" },
+  { id: "a1", timestamp: "2026-04-28T09:00:00+05:30", actor: "System", actorRole: "system", action: "Tender locked for evaluation", target: "ORG/PROC/CIV/2026/0142" },
   { id: "a2", timestamp: "2026-04-28T09:01:14+05:30", actor: "System", actorRole: "system", action: "Eligibility criteria extracted from tender document", target: "4 criteria identified", detail: "FIN-01, TEC-01, CMP-01, CMP-02 — all mandatory" },
   { id: "a3", timestamp: "2026-04-28T09:08:42+05:30", actor: "System", actorRole: "system", action: "Document parsing started", target: "10 bidders, 80 documents" },
   { id: "a4", timestamp: "2026-04-28T09:34:19+05:30", actor: "System", actorRole: "system", action: "OCR completed on 12 scanned/photograph documents", target: "Average confidence 0.91" },
@@ -449,11 +449,11 @@ export function verdictCounts(t: Tender) {
 }
 
 export const officer = {
-  name: "Insp. Meera Kapoor",
-  designation: "Inspector, Procurement Wing",
-  unit: "CRPF DG HQ, New Delhi",
-  email: "meera.kapoor@crpf.gov.in",
-  empId: "CRPF-PRC-2017-441",
+  name: "Meera Kapoor",
+  designation: "Procurement Officer",
+  unit: "Directorate General HQ",
+  email: "meera.kapoor@organization.gov",
+  empId: "PRC-2017-441",
 }
 
 export const bidder = {

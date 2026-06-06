@@ -43,7 +43,7 @@ logger = logging.getLogger(__name__)
 app = FastAPI(
     title="Tenderly API",
     description=(
-        "AI-assisted tender evaluation for the Central Reserve Police Force. "
+        "AI-assisted tender evaluation and eligibility analysis. "
         "Auditable, explainable, end-to-end."
     ),
     version="1.0.0",
